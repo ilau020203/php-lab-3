@@ -8,6 +8,7 @@ use App\Domains\DrivingEntries\Actions\GetAllDrivingEntriesAction;
 use App\Domains\DrivingEntries\Actions\GetDrivingEntryAction;
 use App\Domains\DrivingEntries\Actions\UpdateDrivingEntryAction;
 use App\Http\Api\v1\DrivingEntries\Requests\DrivingEntryRequest;
+use App\Http\Api\v1\DrivingEntries\Requests\UpdateDrivingEntryRequest;
 use App\Http\Api\v1\DrivingEntries\Resources\DrivingEntryResource;
 use App\Http\Api\v1\Helpers\Resources\EmptyResource;
 use Illuminate\Routing\Controller;
@@ -30,7 +31,7 @@ class DrivingEntryController extends Controller
         return new DrivingEntryResource($action->execute($DrivingEntryId));
     }
 
-    public function patch(int $DrivingEntryId, UpdateDrivingEntryAction $action, DrivingEntryRequest $request)
+    public function patch(int $DrivingEntryId, UpdateDrivingEntryAction $action, UpdateDrivingEntryRequest $request)
     {
         return new DrivingEntryResource($action->execute($DrivingEntryId, $request->validated()));
     }

@@ -2,6 +2,7 @@
 
 namespace App\Domains\DrivingEntries\Models;
 
+use App\Domains\DrivingEntries\Factory\DriveEntryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -14,5 +15,9 @@ class DrivingEntry extends Model
     public function driver(): HasOne
     {
         return $this->HasOne(Driver::class);
+    }
+    public static function factory(): DriveEntryFactory
+    {
+        return DriveEntryFactory::new();
     }
 }

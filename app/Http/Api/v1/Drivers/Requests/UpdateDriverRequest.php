@@ -14,9 +14,9 @@ class UpdateDriverRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name'=>'string|max:45',
-            'car_name'=>'string|max:45',
-            'car_type'=> 'integer|max:255',
+            'full_name'=>'sometimes|required|string|max:45',
+            'car_name'=>'sometimes|required|string|max:45',
+            'car_type'=> 'sometimes|required|integer|max:255',
         ];
     }
 }

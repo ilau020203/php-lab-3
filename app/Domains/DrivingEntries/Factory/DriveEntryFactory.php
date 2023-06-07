@@ -1,8 +1,9 @@
 <?php
 
-namespace Database\Factories\Domains\DrivingEntries\Models;
+namespace App\Domains\DrivingEntries\Factory;
 
 use App\Domains\Drivers\Models\Driver;
+use App\Domains\DrivingEntries\Models\DrivingEntry;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
 
@@ -36,4 +37,7 @@ class DriveEntryFactory extends Factory
 
         ];
     }
+    protected $model = DrivingEntry::class;
+
+    
 }

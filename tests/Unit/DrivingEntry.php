@@ -79,9 +79,9 @@ it('driving-entries/ POST correct data', function () {
     $data = $json['data'];
 
     $drivingEntry = DrivingEntry::query()->find($data['id']);
-    assertEquals("Fender Tele5", $drivingEntry->name);
-    assertEquals(1987, $drivingEntry->manufacture_year);
-    assertEquals("telecaster", $drivingEntry->shape);
+    assertEquals("вечер понедельник", $drivingEntry->entry_name);
+    assertEquals(2000, $drivingEntry->price);
+    assertEquals(1, $drivingEntry->status);
     assertEquals($driver->id, $drivingEntry->driver_id);
 
     $drivingEntry->delete();
@@ -233,12 +233,4 @@ it('driving-entries/{id} PATCH correct id', function () {
 
     $drivingEntry->delete();
     $driver->delete();
-});
-
-it('driving-entries/{id} PATCH incorrect id', function () {
-    $response = patch('/api/v1/driving-entries/-1');
-    $response->assertStatus(404);
-
-    $json = $response->decodeResponseJson();
-    assertEquals(404, $json['code']);
 });

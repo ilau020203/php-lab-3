@@ -1,6 +1,7 @@
 <?php
 
-namespace Database\Factories\Domains\Drivers\Models;
+namespace App\Domains\Drivers\Factory;
+use App\Domains\Drivers\Models\Driver;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
@@ -29,4 +30,7 @@ class DriverFactory extends Factory
             "updated_at" => $createdDate,
         ];
     }
+    protected $model = Driver::class;
+
+
 }

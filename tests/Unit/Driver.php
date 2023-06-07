@@ -64,3 +64,46 @@ it('drivers/ POST correct data', function() {
 
     $shop->delete();
 });
+
+it('drivers/{id} PUT incorrect id', function () {
+    $driver = Driver::factory()->createOne();
+    $driver->save();
+
+    $response = $this->putJson('/api/v1/drivers/-1', [
+        "full_name" => 'IVAN',
+        "car_name" => 'KIO',
+        "car_type" => 1,
+    ]);
+    $response->assertStatus(404);
+
+
+    $driver->delete();
+});
+
+it('drivers/{id} PATCH correct id', function () {
+
+
+    $driver = new Driver([
+        "full_name" => 'IVAN',
+        "car_name" => 'KIO',
+        "car_type" => 1,
+    ]);
+    $driver->save();
+
+    $response = $this->patchJson('/api/v1/drivers/' . $driver->id, [
+        'entry_name' => 'вечер'
+    ]);
+    $response->assertStatus(200);
+
+    $json = $response->decodeResponseJson();
+    $data = $json['data'];
+
+    $driver = Driver::query()->find($data['id']);
+    assertEquals('IVAN', $driver->full_name);
+    assertEquals('KIO', $driver->car_name);
+    assertEquals(1, $driver->car_type);
+
+    $driver->delete();
+    $driver->delete();
+});
+
